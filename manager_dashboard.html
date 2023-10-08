@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ username }}'s Dashboard</title>
+    <style>
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .category-box {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            display: inline-block;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>{{ username }}'s Dashboard</h1>
+    
+    <a href="/manage_category.html">Manage Category</a>
+    
+    {% if no_categories_or_products %}
+    <p>No categories or products created.</p>
+    {% endif %}
+    
+    {% for category in categories %}
+    <div class="category-box">
+        <h3>{{ category.name }}</h3>
+        {% if category.products %}
+        <ul>
+            {% for product in category.products %}
+            <li>{{ product.name }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No products created.</p>
+        {% endif %}
+        
+        <a href="/edit_category/{{ category.id }}">Edit</a> |
+        <a href="/delete_category/{{ category.id }}">Delete</a>
+        
+        <a href="/manage_product/{{ category.id }}" style="display: block; text-align: center;">
+            <button>+</button> Add Product
+        </a>
+    </div>
+    {% endfor %}
+    
+    <div class="top-right">
+        <br>
+        <a href="/summary">Summary</a> | <a href="/manager_login.html">Logout</a>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ username }}'s Dashboard - Buy Product</title>
+</head>
+<body>
+    <h1>{{ username }}'s Dashboard - Buy Product</h1>
+    <h2>{{ product.category }} - {{ product.name }}</h2>
+    <p>Availability: In stock</p>
+    
+    <form method="post" action="/buy_product/{{ product.id }}">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="{{ product.quantity }}" required>
+        <input type="submit" value="Buy">
+    </form>
+    
+    <p>Price: {{ product.price }} Rs/{{ product.unit }}</p>
+    <p>Total: {{ product.price * quantity }} Rs</p>
+    
+    <div class="top-right">
+        <a href="/user_profile">Profile</a> | <a href="/cart">Cart</a> | <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>

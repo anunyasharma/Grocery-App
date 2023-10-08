@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Category</title>
+</head>
+<body>
+    <h1>{{ username }}'s Dashboard - Manage Category</h1>
+    <form method="post" action="/add_category">
+        <label for="category_name">Category Name:</label>
+        <input type="text" id="category_name" name="category_name" required><br>
+        
+        <input type="submit" value="Save">
+    </form>
+    
+    <div class="top-right">
+        <a href="/summary">Summary</a> | <a href="/manager_login.html">Logout</a>
+    </div>
+</body>
+</html>
+

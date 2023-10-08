@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ username }}'s Dashboard - Manage Product</title>
+</head>
+<body>
+    <h1>{{ username }}'s Dashboard - Manage Product</h1>
+    
+    <form method="post" action="/add_product">
+        <label for="product_name">Product Name:</label>
+        <input type="text" id="product_name" name="product_name" required><br>
+        
+        <label for="unit">Unit:</label>
+        <select id="unit" name="unit" required>
+            <option value="Rs/kg">Rs/kg</option>
+            <option value="Rs/Litre">Rs/Litre</option>
+            <option value="Rs/dozen">Rs/dozen</option>
+            <option value="Rs/gram">Rs/gram</option>
+        </select><br>
+        
+        <label for="rate">Rate/Unit:</label>
+        <input type="number" id="rate" name="rate" required><br>
+        
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br>
+        
+        <input type="hidden" name="category_id" value="{{ category.id }}">
+        <input type="submit" value="Save">
+    </form>
+    
+    <h2>Product List</h2>
+    {% if category.products %}
+    {% for product in category.products %}
+    <div class="product-box">
+        <h4>{{ product.name }}</h4>
+        <p>Unit: {{ product.unit }}</p>
+        <p>Rate/Unit: {{ product.rate }}</p>
+        <p>Quantity: {{ product.quantity }}</p>
+        
+        <a href="/edit_product/{{ product.id }}">Edit</a> |
+        <a href="/delete_product/{{ product.id }}">Delete</a>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No products created.</p>
+    {% endif %}
+    
+    <div class="top-right">
+        <a href="/summary">Summary</a> | <a href="/manager_login.html">Logout</a>
+    </div>
+</body>
+</html>
+

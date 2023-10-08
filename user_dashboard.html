@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome User</title>
+</head>
+<body>
+    <h1>{{ username }}'s Dashboard</h1>
+    
+    <div class="top-right">
+        <a href="/user_profile">Profile</a> | <a href="/cart">Cart</a> | <a href="/logout">Logout</a>
+    </div>
+    
+    {% for category in categories %}
+    <div class="category-box">
+        <h2>{{ category.name }}</h2>
+        {% for product in category.products %}
+        <div class="product-box">
+            <h4>{{ category.name }} - {{ product.name }}</h4>
+            {% if product.available %}
+                <p>Availability: In stock</p>
+                <p>Quantity: {{ product.quantity }} {{ product.unit }}</p>
+                <form method="post" action="/buy_product/{{ product.id }}">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="{{ product.quantity }}" required>
+                    <input type="submit" value="Buy">
+                </form>
+            {% else %}
+                <p>Out of stock</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</body>
+</html>

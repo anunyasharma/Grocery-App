@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+</head>
+<body>
+    <h1>{{ username }}'s Booking's</h1>
+    
+    <div class="cart-items">
+        {% for item in cart_items %}
+        <div class="cart-item">
+            <p>{{ item.category }} - {{ item.product }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>Price per unit: {{ item.price }} Rs</p>
+            <a href="/buy_product/{{ item.product_id }}">Review</a>
+            <a href="/delete_cart_item/{{ item.product_id }}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <p>Grand Total: {{ grand_total }} Rs</p>
+    
+    <div class="top-right">
+        <a href="/user_profile">Profile</a> | <a href="/user_dashboard">Home</a> | <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
